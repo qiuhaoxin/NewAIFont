@@ -24,6 +24,7 @@
   "dependencies": {
     "antd": "^3.8.3",
     "babel-polyfill": "^6.26.0",
+    "invariant": "^2.2.4",
     "less": "^3.8.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
