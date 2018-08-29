@@ -5,12 +5,15 @@ import {
 	routerMiddleware,
 	routerReducer 
 } from 'react-router-redux';
-import document from 'globale/document';
+import document from 'global/document';
+import core from './saga-core';
+import {isFunction,isEmpty,isString,isHTMLElement} from '../utils';
+import {Provider} from 'react-redux';
 
 export default function(opts={}){
+    //console.log("opts is "+JSON.stringify(opts));
     const history=opts.history||createHashHistory;
     const createOpts={
-
     	initialReducer:{
     		routing:routerReducer,
     	},
@@ -24,8 +27,59 @@ export default function(opts={}){
     		app._history=patchHistroy(history);
     	},
     };
+
+    const app=core.create();
+    const oldStart=app.start;
+    app.start=start;
+    app.router=router;
+    return app;
+
+    function start(container){
+       invariant(!isEmpty(container),`dataFlow.start:container should not be empty!`);
+
+       if(isString(container)){
+          container=document.querySelector(container);
+          invariant(container,`dataFlow.start:container dom not found`);
+       }
+       //校验container是否HtmlElement
+       invariant(isHTMLElement(container),`dataFlow.start:container should be a htmlElement`);
+       //在启动前注册路由
+       invariant(app._router,`dataFlow.start:router should register before start method!`);
+
+       if(app._store){
+           oldStart.call(app);
+       }
+       const store=app._store;
+       app._getProvider=getProvider.bind(null,store,app);
+
+       if(container){
+           render(container,store,app,app._router);
+           app._plugin.apply('onHmr')(render.bind(null,container,store,app));
+       }
+
+
+    }
+    function router(router){
+        invariant(isFunction(router),`dataFlow.router:router should be a function`);
+        app._router=router;
+    }
     
 
+    function getProvider(store,app,router){
+        //将store从根节点传入
+       return extraProps=><Provider store={store}>
+          {
+            //执行传入的路由
+            router({app,history:app._history,...extraProps})
+          }
+       </Provider>
+    }
+
+    function render(container,store,app,router){
+        const ReactDom=require('react-dom');
+        ReactDom.render(React.createElement(getProvider(store,app,router)),container);
+    }
+    
 }
 
 

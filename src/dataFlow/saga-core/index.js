@@ -56,7 +56,7 @@ export function create(hooksAndOpts={},createOpts={}){
 		};
 
 		const sagaMiddleware=createSagaMiddelware();
-		const 
+		 
 	}
 
 

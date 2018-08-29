@@ -7,4 +7,5 @@ export default function createPromiseMiddleware(app){
 		const {type}=action;
 		
 	}
+	
 }
