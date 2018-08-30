@@ -1,5 +1,5 @@
 import invariant from 'invariant';
-import {isPlainObject} from '../../utils';
+import {IsPlainObject} from '../../utils';
 
 const hooks=[
     "onError",
@@ -31,7 +31,7 @@ export default class Plugin{
 	}
 
 	use(plugin){
-       invariant(isPlainObject(plugin),"plugin.use:Plugin should be plain object");
+       invariant(IsPlainObject(plugin),"plugin.use:Plugin should be plain object");
        const hooks=this.hooks;
        for(const key in plugin){
        	  if(Object.prototype.hasOwnProperty.call(plugin,key)){

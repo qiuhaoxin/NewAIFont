@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DataFlow from './dataFlow';
+import router from './router';
 
 const dataFlow=new DataFlow({});
-ReactDOM.render(
-   <div>
-     test
-   </div>
-,document.getElementById('root'))
+dataFlow.model(require('./models/global'))
+dataFlow.router(router);
+dataFlow.start('#root');
+
+// ReactDOM.render(
+//    <div>
+//      test
+//    </div>
+// ,document.getElementById('root'))
 
 
 

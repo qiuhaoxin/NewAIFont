@@ -1,34 +1,36 @@
 import React from 'react';
 import invariant from 'invariant';
-import createHashHistory from 'history';
+import createHashHistory from 'history/createHashHistory';
 import {
 	routerMiddleware,
 	routerReducer 
 } from 'react-router-redux';
 import document from 'global/document';
-import core from './saga-core';
+import * as core from './saga-core';
 import {isFunction,isEmpty,isString,isHTMLElement} from '../utils';
 import {Provider} from 'react-redux';
 
 export default function(opts={}){
     //console.log("opts is "+JSON.stringify(opts));
-    const history=opts.history||createHashHistory;
+    const history=opts.history||createHashHistory();
+    console.log("history is "+history)
     const createOpts={
     	initialReducer:{
     		routing:routerReducer,
     	},
     	setupMiddlewares(middlewares){
     		return [
+              routerMiddleware(history),
                ...middlewares,
-               routerMiddleware(history),
     		]
     	},
     	setupApp(app){
+        console.log("app setUpaeA");
     		app._history=patchHistroy(history);
     	},
     };
 
-    const app=core.create();
+    const app=core.create(opts,createOpts);
     const oldStart=app.start;
     app.start=start;
     app.router=router;
@@ -46,7 +48,7 @@ export default function(opts={}){
        //在启动前注册路由
        invariant(app._router,`dataFlow.start:router should register before start method!`);
 
-       if(app._store){
+       if(!app._store){
            oldStart.call(app);
        }
        const store=app._store;

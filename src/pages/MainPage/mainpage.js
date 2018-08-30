@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 
-export default class BasicLayout extends Component{
-
+class MainPage extends Component{
 	constructor(props){
 		super(props);
 	}
@@ -9,10 +8,11 @@ export default class BasicLayout extends Component{
 
 	}
 	render(){
-       return (
-		<div>
-           basicLayout
-		</div>
-       )
+		return (
+           <div>
+
+           </div>
+		)
 	}
 }
+export default MainPage;
