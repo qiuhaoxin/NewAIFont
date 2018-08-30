@@ -12,7 +12,6 @@ export default {
        	   	  payload:true,
        	   })
            const resonse=yield call(getCurrentUser);
-           console.log("response is "+JSON.stringify(response));
        }
 	},
 	reducers:{

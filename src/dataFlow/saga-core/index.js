@@ -29,7 +29,7 @@ export function create(hooksAndOpts={},createOpts={}){
     plugin.use(filterHooks(hooksAndOpts));
 	const app={
         _models:[
-
+           prefixNamespace({...dataFlowModel})
         ],
         _store:null,
         _plugin:plugin,

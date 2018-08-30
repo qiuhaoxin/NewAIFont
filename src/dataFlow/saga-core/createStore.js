@@ -17,10 +17,10 @@ export default function({
 	//sagaMiddleware
 	const extraEnhancers=plugin.get('extraEnhancers');
 	//console.log("extraEnhancers is "+JSON.stringify(extraEnhancers));
-	// invariant(
- //       isArray(extraEnhancers),
- //       `[app.start] extraEnhancers should be array,but got ${typeof extraEnhancers}`,
-	// );
+	invariant(
+       isArray(extraEnhancers),
+       `[app.start] extraEnhancers should be array,but got ${typeof extraEnhancers}`,
+	);
 	const extraMiddlewares =plugin.get('onAction');
 	//console.log("just for test"+sagaMiddleware);
 	const middlewares=setupMiddlewares([

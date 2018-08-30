@@ -2,7 +2,7 @@
 import request from './request';
 
 const urlParams={
-	development:'localhost:8888',
+	development:'http://172.20.72.40:8888',
 	production:'ai.kingdee.com:9992',
 }
 let postUrl="";

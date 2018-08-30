@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import Styles from './index.less';
 
 
 class Manager extends Component{

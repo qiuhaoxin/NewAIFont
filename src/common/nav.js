@@ -1,4 +1,5 @@
-import dynamic from '../dataFlow/dynamic';
+//import dynamic from '../dataFlow/dynamic';
+import dynamic from 'dva/dynamic';
 
 const dynamicWrapper=(app,models,component)=>dynamic({
     app,
@@ -17,7 +18,7 @@ export const getNavData=app=>[
                    path:'MainPage',
                    children:[
                       {
-                        name:'首页卡片',
+                        name:'首页列表',
                         path:'mainpage',
                         component:dynamicWrapper(app,['mainpage'],()=>import('../pages/MainPage/mainpage.js')),
                       }

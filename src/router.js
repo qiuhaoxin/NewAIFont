@@ -1,7 +1,8 @@
 import React from 'react';
 import {getNavData} from './common/nav';
-import {Router,Route,Switch} from 'react-router-dom';
+// import {Router,Route,Switch} from 'react-router-dom';
 import {getPlainNode} from './utils';
+import {Router,Route,Switch} from 'dva/router';
 
 
 function getLayout(navData,path){

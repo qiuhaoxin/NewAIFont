@@ -4,4 +4,29 @@
 	flex-direction:row;
 	height:80px;
 	background-color:#eee;
+	align-items:center;
+
+
+	& .leftWrapper{
+	    width:20%;
+	    display:inline-flex;
+	    justify-content:flex-end;
+	    padding-right:40px;
+	}
+
+	& .navWrapper{
+	    width:50%;
+	    display:inline-flex;
+	    cursor:pointer;
+        & li{
+           padding-left:50px;
+
+           &.selected{
+               color:#fff;
+           }
+           &.normal{
+               color:#555;
+           }
+        }
+	}
 }

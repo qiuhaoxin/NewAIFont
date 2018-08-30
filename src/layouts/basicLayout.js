@@ -60,14 +60,13 @@ class BasicLayout extends Component{
 	   const {currentUser,getRouteData}=this.props;
 	   const Layout=(
           <div>
-               <GlobalHeader>
+               <GlobalHeader {...this.props}>
 
                </GlobalHeader>
                <div className={'Content'}>
                     <Switch>
                        {
                            getRouteData('basicLayout').map(item=>{
-                           	   console.log("path is "+JSON.stringify(item));
                            	   return (
                                   <Route
                                      path={item.path}
