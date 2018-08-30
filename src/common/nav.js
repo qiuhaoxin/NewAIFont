@@ -7,7 +7,7 @@ const dynamicWrapper=(app,models,component)=>dynamic({
 })
 export const getNavData=app=>[
     {
-        component:dynamicWrapper(app,['global'],()=>import('../layouts/basicLayout')),
+        component:dynamicWrapper(app,['user'],()=>import('../layouts/basicLayout')),
         layout:'basicLayout',
         name:'AI Platform',
         path:'/',

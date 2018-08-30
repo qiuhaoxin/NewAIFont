@@ -22,15 +22,14 @@ function getRouteData(navData,path){
     const route=navData.filter(item=>item.layout===path)[0];
 
     const nodeList=getPlainNode(route.children);
+    console.log("nodeList is "+JSON.stringify(nodeList));
     return nodeList;
 }
 
 
 function RouterConfig({history,app}){
-	console.log("history is "+history)
 	const navData=getNavData(app);
 	const BasicLayout=getLayout(navData,'basicLayout').component;
-  console.log("BasicLayout is "+BasicLayout)
 	const passProps={
 		app,
 		navData,
@@ -38,7 +37,6 @@ function RouterConfig({history,app}){
 			return getRouteData(navData,path);
 		}
 	}
-
 	return (
        <Router history={history}>
            <Switch>

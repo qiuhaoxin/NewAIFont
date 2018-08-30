@@ -3,6 +3,7 @@ import React,{Component} from 'react';
 const cached={};
 
 function registerModel(app,model){
+	console.log("model is "+JSON.stringify(model));
 	model=model.default||model;
 	if(!cached[model.namespace]){
 		app.model(model);
@@ -42,7 +43,6 @@ function asyncComponent(config){
 		}
 		render(){
              const {AsyncComponent}=this.state;
-             console.log("AsyncComponent is "+AsyncComponent)
              const {loadingComponent}=this;
              const LoadingComponent=loadingComponent;
              if(AsyncComponent) return <AsyncComponent {...this.props}/>;
@@ -70,9 +70,8 @@ export default function dynamic(config){
 							if(!Array.isArray(m)){
 								m=[m];
 							}
-							m.map=(_=>registerModel(app,_));
+							m.map(_=>registerModel(app,_));
 						})
-						console.log("ret is "+ret[len]);
 						resolve(ret[len]);
 					}
 

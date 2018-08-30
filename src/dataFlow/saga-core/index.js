@@ -33,7 +33,6 @@ export function create(hooksAndOpts={},createOpts={}){
         ],
         _store:null,
         _plugin:plugin,
-
         model,
         start,
 	}
@@ -50,7 +49,7 @@ export function create(hooksAndOpts={},createOpts={}){
 		app._models.push(prefixNamespace(m));
 	}
 
-	function injectModel(createReducers,onError,unlisteners,m){
+	function injectModel(createReducer,onError,unlisteners,m){
 		model(m);
 		const store=app._store;
 		if(m.reducers){
@@ -80,8 +79,6 @@ export function create(hooksAndOpts={},createOpts={}){
 
 
 	function start(){
-
-		console.log("start in index")
 		const onError=err=>{
 			if(typeof err =='string') err=new Error(err);
 			err.preventDefault=()=>{
