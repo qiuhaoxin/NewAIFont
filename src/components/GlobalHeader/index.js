@@ -15,11 +15,9 @@ class GlobalHeader extends Component{
 	getTabData=()=>{
         const {getRouteData,navData}=this.props;
         let tempData=[];
-        navData[0].children.forEach(item=>{
-             let tempObj={};
-             tempObj['name']=item.name;
-             tempObj['path']=item.path
-             tempData.push(tempObj);
+        const pageData=navData[0];
+        pageData.children.forEach(item=>{
+             tempData.push(item);
         })
         console.log("tempData is "+JSON.stringify(tempData));
         return tempData;
@@ -31,27 +29,39 @@ class GlobalHeader extends Component{
           </div>
        )
 	}
-    handleTabClick=(e,item)=>{
-       console.log("item is "+JSON.stringify(item));
-       let {path}=item;
-       path=path.replace(/\//,'');
-       this.setState({
-       	  curSelected:path,
-       })
-
-       this.props.history.push("/System/systemList");
-    }
+  // handleTabClick=(e,item)=>{
+  //     const parentPath=item['path'];
+  //     const firstChild=item.children && item.children[0];
+  //     let {path}=item;
+  //     path=path.replace(/\//,'');
+  //     this.setState({
+  //      	curSelected:path,
+  //     })
+  //     const urlPath=`${parentPath}${firstChild.path}`;
+  //     this.props.history.push(`${firstChild.path}`);
+  // }
 	renderNavWrapper=()=>{
 		const {curSelected}=this.state;
-	    console.log("curSelected is "+curSelected);
-       const childList=this.TabData.map((item,index)=>
-        <li 
-           className={`${curSelected==item.path.replace(/\//,'') ? Styles.selected : Styles.normal}`}
-           key={item.path?item.path:index}
-           onClick={(e)=>this.handleTabClick(e,item)}
-           >
-           {item.name}
-        </li>)
+       const childList=this.TabData.map((item,index)=>{
+          const firstChild=item.children[0];
+          const itemPath=`/${item.path}/${firstChild.path}`;
+          //console.log("itemPath is "+JSON.stringify(item));
+          console.log("url path is "+itemPath);
+
+          return (
+            <li 
+               className={`${curSelected==item.path.replace(/\//,'') ? Styles.selected : Styles.normal}`}
+               key={item.path?item.path:index}
+               >
+               <Link                 
+                  to={itemPath}
+                  replace={itemPath === this.props.location.pathname}
+                  >
+                  {item.name}
+                </Link>
+            </li>
+          )
+       })
        return (
           <ul className={Styles.navWrapper}>
               {childList}

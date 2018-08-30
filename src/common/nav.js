@@ -47,11 +47,30 @@ export const getNavData=app=>[
                     name:'管理',
                     path:'Manager',
                     children:[
-                       {
+                        {
                           name:'管理',
                           path:'manager',
                           component:dynamicWrapper(app,['manager'],()=>import('../pages/Manager/manager.js')),
-                       }
+                          children:[
+                             {
+                                name:'用户管理',
+                                path:'user',
+                                component:dynamicWrapper(app,['user'],()=>import('../pages/Manager/user.js')),
+                             },{
+                                name:'基础资料',
+                                path:'baseData',
+                                component:dynamicWrapper(app,['baseData'],()=>import('../pages/Manager/baseData.js')),
+                             },{
+                                name:'产品线维护',
+                                path:'productLine',
+                                component:dynamicWrapper(app,['productLine'],()=>import('../pages/Manager/productLine.js')),
+                             },{
+                                name:'会话管理',
+                                path:'session',
+                                component:dynamicWrapper(app,['session'],()=>import('../pages/Manager/session.js')),
+                             }
+                          ]
+                        }
                     ]
                 }
         ]

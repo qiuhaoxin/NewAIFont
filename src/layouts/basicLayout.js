@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
-import {Router,Route,Switch,Redirect} from 'react-router-dom';
+import {Router,Route,Switch,Redirect} from 'dva/router';
 import {connect} from 'react-redux';
 import {ContainerQuery} from 'react-container-query';
 import GlobalHeader from '../components/GlobalHeader';
@@ -32,13 +32,11 @@ const query={
 }
 
 class BasicLayout extends Component{
-
 	constructor(props){
 		super(props);
 	}
 	componentDidMount(){
         const {dispatch}=this.props;
-        console.log("dispatch is "+dispatch);
         dispatch({
           type:'global/fetch',
           payload:{
@@ -57,16 +55,16 @@ class BasicLayout extends Component{
 	}
 
 	render(){
-	   const {currentUser,getRouteData}=this.props;
+	   const {currentUser,getRouteData,navData,location,dispatch}=this.props;
 	   const Layout=(
           <div>
-               <GlobalHeader {...this.props}>
-
+               <GlobalHeader navData={navData} dispatch={dispatch} location={location}>
                </GlobalHeader>
                <div className={'Content'}>
                     <Switch>
                        {
                            getRouteData('basicLayout').map(item=>{
+                               console.log("basicLayout item is "+JSON.stringify(item));
                            	   return (
                                   <Route
                                      path={item.path}

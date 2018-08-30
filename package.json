@@ -39,6 +39,7 @@
     "invariant": "^2.2.4",
     "is-plain-object": "^2.0.4",
     "less": "^3.8.1",
+    "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-container-query": "^0.11.0",

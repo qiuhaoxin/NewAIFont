@@ -21,6 +21,7 @@ export const isEmpty=(str)=>{
 
  export function getPlainNode(nodeList,parentPath=''){
      const arr=[];
+    // console.log("getPlainNode!");
      nodeList.forEach((node)=>{
      	const item=node;
      	item.path=`${parentPath}/${item.path||''}`.replace(/\/+/g,'/');
@@ -34,5 +35,6 @@ export const isEmpty=(str)=>{
                arr.push(item);
      	}
      })
+    // console.log("arr is "+JSON.stringify(arr));
      return arr;
  }
