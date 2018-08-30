@@ -10,7 +10,7 @@ class IntentionList extends Component{
 	render(){
 		return (
            <div>
-
+               intentionList
            </div>
 	    )
 	}

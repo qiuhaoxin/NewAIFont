@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-
+import Styles from './index.less';
 class GlobalHeader extends Component{
 	constructor(props){
 		super(props);
@@ -9,8 +9,10 @@ class GlobalHeader extends Component{
 	}
 	render(){
         return (
-            <div>
-
+            <div className={Styles.wrapper}>
+                <div>
+                    GlobalHeader
+                </div>
             </div>
         )
 	}

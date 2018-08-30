@@ -22,8 +22,7 @@ export const getNavData=app=>[
                         component:dynamicWrapper(app,['mainpage'],()=>import('../pages/MainPage/mainpage.js')),
                       }
                    ]
-                },
-                {
+                },{
                     name:'业务系统',
                     path:'System',
                     children:[
@@ -33,8 +32,7 @@ export const getNavData=app=>[
                         component:dynamicWrapper(app,['systemlist'],()=>import('../pages/System/systemList.js')),
                       }
                     ]
-                },
-                {
+                },{
                     name:'意图',
                     path:'Intention',
                     children:[
@@ -44,7 +42,17 @@ export const getNavData=app=>[
                         component:dynamicWrapper(app,['intentionlist'],()=>import('../pages/Intention/intentionList.js')),
                       }
                     ]
-                },
+                },{
+                    name:'管理',
+                    path:'Manager',
+                    children:[
+                       {
+                          name:'管理',
+                          path:'manager',
+                          component:dynamicWrapper(app,['manager'],()=>import('../pages/Manager/manager.js')),
+                       }
+                    ]
+                }
         ]
     }
 ]

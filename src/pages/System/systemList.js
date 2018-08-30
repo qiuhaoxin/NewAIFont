@@ -11,7 +11,7 @@ class SystemList extends Component{
 	render(){
        return (
            <div>
-
+               SystemList
            </div>
        	)
 	}
