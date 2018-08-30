@@ -1,3 +1,5 @@
+import {getCurrentUser} from '../services/userApi';
+
 export default {
 	namespace:'global',
 	state:{
@@ -9,6 +11,8 @@ export default {
        	   	  type:'changeTab',
        	   	  payload:true,
        	   })
+           const resonse=yield call(getCurrentUser);
+           console.log("response is "+JSON.stringify(response));
        }
 	},
 	reducers:{

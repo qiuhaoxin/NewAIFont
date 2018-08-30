@@ -25,7 +25,7 @@ export default function createPromiseMiddleware(app){
 		const model=app._models.filter(m=>m.namespace==namespace)[0];
 		if(model){
 			if(model.effects && model.effects[type]){
-				return ture;
+				return true;
 			}
 		}
 		return false;

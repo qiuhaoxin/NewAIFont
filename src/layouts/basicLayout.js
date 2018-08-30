@@ -39,6 +39,15 @@ class BasicLayout extends Component{
 	componentDidMount(){
         const {dispatch}=this.props;
         console.log("dispatch is "+dispatch);
+        dispatch({
+          type:'global/fetch',
+          payload:{
+
+          },
+          callback:function(){
+            console.log("callback is");
+          }
+        })
 	}
 	getPageTitle=()=>{
 		const {location,getRouteData}=this.props;

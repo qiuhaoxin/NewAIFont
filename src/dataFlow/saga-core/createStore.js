@@ -30,13 +30,13 @@ export default function({
 	]);
     //console.log("middlewares is "+JSON.stringify(middlewares));
 	let devtools=()=>noop=>noop;
-	// if(process.env.NODE_ENV!=='production' && window.__REDUX_DEVTOOLS_EXTENSION__){
-	// 	devtools=window.__REDUX_DEVTOOLS_EXTENSION__;
-	// }
+	if(process.env.NODE_ENV!=='production' && window.__REDUX_DEVTOOLS_EXTENSION__){
+	 	devtools=window.__REDUX_DEVTOOLS_EXTENSION__;
+    }
 	const enhancers=[
         applyMiddleware(...middlewares),
         ...extraEnhancers,
-       //devtools(window.__REDUX_DEVTOOLS_EXTENSION__OPTIONS),
+       devtools(window.__REDUX_DEVTOOLS_EXTENSION__OPTIONS),
 	];
 	//console.log("initialState is "+JSON.stringify(initialState));
 	return createStore(reducers,initialState,compose(...enhancers));
