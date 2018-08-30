@@ -62,7 +62,7 @@ module.exports={
 	},
 	plugins:[
        new webpack.DefinePlugin({
-
+           FETCH_URL:JSON.stringify('development'),
        }),
        new HtmlWebpackPlugin({
        	  template:paths.appHtml,
