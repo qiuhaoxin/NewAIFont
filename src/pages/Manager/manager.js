@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-
+import Styles from './manager.less';
 
 class Manager extends Component{
 	constructor(props){
@@ -8,10 +8,18 @@ class Manager extends Component{
     comonentDidMount(){
 
     }
+    renderLeftNav=()=>{
+
+    	return (
+          <ul>
+
+          </ul>
+    	)
+    }
 	render(){
 		return (
-          <div>
-
+          <div className={Styles.wrapper}>
+              manger
           </div>
 		)
 	}

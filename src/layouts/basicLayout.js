@@ -5,10 +5,8 @@ import {Router,Route,Switch,Redirect} from 'dva/router';
 import {connect} from 'react-redux';
 import {ContainerQuery} from 'react-container-query';
 import GlobalHeader from '../components/GlobalHeader';
-
-const styleObj={
-
-}
+import SlideMenu from '../components/SlideMenu';
+import Styles from './basicLayout.less';
 
 const query={
 	'screen-xs':{
@@ -47,36 +45,54 @@ class BasicLayout extends Component{
           }
         })
 	}
+  state={
+    showSlideMenu:false,
+  }
 	getPageTitle=()=>{
 		const {location,getRouteData}=this.props;
 		const {pathname}=location;
 
 		return "AI platform";
 	}
-
+  handleTabClick=(item)=>{
+     if(item.name=='管理'){
+        this.setState({
+          showSlideMenu:true,
+        })
+     }else{
+        this.setState({
+          showSlideMenu:false,
+        })
+     }
+  }
 	render(){
 	   const {currentUser,getRouteData,navData,location,dispatch}=this.props;
+     const {showSlideMenu}=this.state;
 	   const Layout=(
-          <div>
-               <GlobalHeader navData={navData} dispatch={dispatch} location={location}>
+          <div className={Styles.wrapper}>
+               <GlobalHeader navData={navData} dispatch={dispatch} location={location} onTabClick={this.handleTabClick}>
                </GlobalHeader>
-               <div className={'Content'}>
-                    <Switch>
-                       {
-                           getRouteData('basicLayout').map(item=>{
-                               console.log("basicLayout item is "+JSON.stringify(item));
-                           	   return (
-                                  <Route
-                                     path={item.path}
-                                     extact={item.extact}
-                                     component={item.component}
-                                     key={item.path}
-                                  ></Route>
-                           	   )
-                           })
-                       }
-                       <Redirect from='/' to="/MainPage/mainpage"/>
-                    </Switch>
+               <div className={Styles.content}>
+                    <SlideMenu visible={showSlideMenu} className={Styles.slideMenu}>
+
+                    </SlideMenu>
+                    <div>
+                      <Switch>
+                         {
+                             getRouteData('basicLayout').map(item=>{
+                                 return (
+                                    <Route
+                                       path={item.path}
+                                       extact={item.extact}
+                                       component={item.component}
+                                       key={item.path}
+                                    ></Route>
+                                 )
+                             })
+                         }
+                         <Redirect from='/' to="/MainPage/mainpage"/>
+                      </Switch>
+                    </div>
                </div>
           </div>
 	   )

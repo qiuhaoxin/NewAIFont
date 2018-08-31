@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import Styles from './index.less';
 import {Link} from 'dva/router';
+import PropTypes from 'prop-types';
 class GlobalHeader extends Component{
 	constructor(props){
 		super(props);
@@ -29,29 +30,21 @@ class GlobalHeader extends Component{
           </div>
        )
 	}
-  // handleTabClick=(e,item)=>{
-  //     const parentPath=item['path'];
-  //     const firstChild=item.children && item.children[0];
-  //     let {path}=item;
-  //     path=path.replace(/\//,'');
-  //     this.setState({
-  //      	curSelected:path,
-  //     })
-  //     const urlPath=`${parentPath}${firstChild.path}`;
-  //     this.props.history.push(`${firstChild.path}`);
-  // }
+  handelTab=(e,item)=>{
+      const {onTabClick}=this.props;
+      onTabClick && onTabClick(item);
+  }
 	renderNavWrapper=()=>{
 		const {curSelected}=this.state;
        const childList=this.TabData.map((item,index)=>{
           const firstChild=item.children[0];
           const itemPath=`/${item.path}/${firstChild.path}`;
-          //console.log("itemPath is "+JSON.stringify(item));
-          console.log("url path is "+itemPath);
 
           return (
             <li 
                className={`${curSelected==item.path.replace(/\//,'') ? Styles.selected : Styles.normal}`}
                key={item.path?item.path:index}
+               onClick={(e)=>this.handelTab(e,item)}
                >
                <Link                 
                   to={itemPath}
@@ -80,5 +73,12 @@ class GlobalHeader extends Component{
         )
 	}
 }
+GlobalHeader.defaultProps={
+  onTabClick:null,
+}
+GlobalHeader.propTypes={
+  onTabClick:PropTypes.func,
+}
+
 
 export default GlobalHeader;
