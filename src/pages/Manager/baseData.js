@@ -11,7 +11,7 @@ class BaseData extends Component{
 	render(){
 		return (
           <div>
-
+              基础资料维护
           </div>
 		)
 	}

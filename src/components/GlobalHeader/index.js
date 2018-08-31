@@ -11,7 +11,15 @@ class GlobalHeader extends Component{
 	    }
 	}
 	componentDidMount(){
-       
+    const {location:{pathname}}=this.props;
+    console.log("pathname is "+pathname);
+    const matchReg=/\/([a-zA-Z]+)\//;
+    const result=pathname.match(matchReg);
+    if(result && result.length>1){
+      this.setState({
+        curSelected:result[1],
+      })
+    }
 	}
 	getTabData=()=>{
         const {getRouteData,navData}=this.props;
@@ -20,11 +28,10 @@ class GlobalHeader extends Component{
         pageData.children.forEach(item=>{
              tempData.push(item);
         })
-        console.log("tempData is "+JSON.stringify(tempData));
         return tempData;
 	}
 	renderLeftWrapper=()=>{
-       return (
+       return (   
           <div className={Styles.leftWrapper}>
                  AI Platform
           </div>
@@ -33,28 +40,30 @@ class GlobalHeader extends Component{
   handelTab=(e,item)=>{
       const {onTabClick}=this.props;
       onTabClick && onTabClick(item);
+      this.setState({
+        curSelected:item.path,
+      })
   }
 	renderNavWrapper=()=>{
 		const {curSelected}=this.state;
-       const childList=this.TabData.map((item,index)=>{
+    const childList=this.TabData.map((item,index)=>{
           const firstChild=item.children[0];
           const itemPath=`/${item.path}/${firstChild.path}`;
-
           return (
             <li 
-               className={`${curSelected==item.path.replace(/\//,'') ? Styles.selected : Styles.normal}`}
                key={item.path?item.path:index}
-               onClick={(e)=>this.handelTab(e,item)}
                >
-               <Link                 
+               <Link     
+                  className={`${curSelected==item.path.replace(/\//,'') ? Styles.selected : Styles.normal}`}            
                   to={itemPath}
                   replace={itemPath === this.props.location.pathname}
+                  onClick={(e)=>this.handelTab(e,item)}
                   >
                   {item.name}
                 </Link>
             </li>
           )
-       })
+    })
        return (
           <ul className={Styles.navWrapper}>
               {childList}

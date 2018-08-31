@@ -31,6 +31,14 @@ export const getNavData=app=>[
                         name:'系统列表',
                         path:'systemList',
                         component:dynamicWrapper(app,['systemlist'],()=>import('../pages/System/systemList.js')),
+                      },{
+                        name:'新增业务系统',
+                        path:'newSystem',
+                        component:dynamicWrapper(app,['systemlist'],()=>import('../pages/System/newSystem.js')),
+                      },{
+                        name:'系统详情',
+                        path:'systemDetial',
+                        component:dynamicWrapper(app,['systemlist'],()=>import('../pages/System/systemDetial.js')),
                       }
                     ]
                 },{
@@ -41,17 +49,20 @@ export const getNavData=app=>[
                         name:'意图列表',
                         path:'intentionList',
                         component:dynamicWrapper(app,['intentionlist'],()=>import('../pages/Intention/intentionList.js')),
+                      },{
+                        name:'意图详情',
+                        path:'intentionDetial',
+                        component:dynamicWrapper(app,['intentionlist'],()=>import('../pages/Intention/intentionDetial.js')),
+                      },{
+                        name:'新增意图',
+                        path:'newIntention',
+                        component:dynamicWrapper(app,['intentionlist'],()=>import('../pages/Intention/newIntention.js')),
                       }
                     ]
                 },{
                     name:'管理',
                     path:'Manager',
                     children:[
-                        {
-                          name:'管理',
-                          path:'manager',
-                          component:dynamicWrapper(app,['manager'],()=>import('../pages/Manager/manager.js')),
-                          children:[
                              {
                                 name:'用户管理',
                                 path:'user',
@@ -69,8 +80,6 @@ export const getNavData=app=>[
                                 path:'session',
                                 component:dynamicWrapper(app,['session'],()=>import('../pages/Manager/session.js')),
                              }
-                          ]
-                        }
                     ]
                 }
         ]

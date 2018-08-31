@@ -73,7 +73,7 @@ class BasicLayout extends Component{
                <GlobalHeader navData={navData} dispatch={dispatch} location={location} onTabClick={this.handleTabClick}>
                </GlobalHeader>
                <div className={Styles.content}>
-                    <SlideMenu visible={showSlideMenu} className={Styles.slideMenu}>
+                    <SlideMenu visible={showSlideMenu} className={Styles.slideMenu} history={this.props.history}>
 
                     </SlideMenu>
                     <div>

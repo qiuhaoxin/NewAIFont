@@ -11,7 +11,7 @@ class Session extends Component{
 	render(){
 		return (
           <div>
-
+              会话管理
           </div>
 		)
 	}
