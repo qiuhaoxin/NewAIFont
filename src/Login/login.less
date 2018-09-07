@@ -1,9 +1,62 @@
 .wrapper{
 	width:100%;
 	display:inline-flex;
-	& imgWrapper{
-	   width:80%;
-	   height:;
-	}
+	position:absolute;
+	left:0;top:0;height:100%;
+    @media screen and (min-width:768px){
+       & .imgWrapper{
+		   width:300px;
+		   height:200px;
+		   background:url('../images/login15.png');
+		   background-repeat:no-repeat;
+		   background-size:300px 200px;
+	   }
+    }
+    @media screen and (min-width:992px){
+       & .imgWrapper{
+		   width:600px;
+		   height:400px;
+		   background:url('../images/login15.png');
+		   background-repeat:no-repeat;
+		   background-size:600px 400px;
+	   }
+    }
+    @media screen and (min-width:1200px){
+       & .imgWrapper{
+		   width:800px;
+		   height:600px;
+		   background:url('../images/login15.png');
+		   background-repeat:no-repeat;
+		   background-size:800px 600px;
+	   }
+    }
+    @media screen and (min-width:1600px){
+       & .imgWrapper{
+		   width:1580px;
+		   height:100%;
+		   background:url('../images/login15.png');
+		   background-repeat:no-repeat;
+		   background-size:contain;
+	   }
+    }
+    & .inputWrapper{
+        margin-top:18%;flex-grow:1;
+        & .row{
+            display:inline-flex;
+            width:100%;
+            margin-top:40px;
+            position:relative;
+            &:after{
+               content:'';position:absolute;left:0;width:100%;height:1px;background:#ccc;bottom:0;
+            }
+            & label{
+                width:50px;
+            }
+            & input{
+               border:none;
+               outline:none;
+            }
+        }
+    }
 
 }
