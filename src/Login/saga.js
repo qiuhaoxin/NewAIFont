@@ -1,27 +1,23 @@
-
 import { take, put, call, fork, select, takeEvery, all,cancel } from 'redux-saga/effects'
 import {loginForAccount} from '../services/userApi';
 
 function* LoginFun(payload){
+	console.log("LoginFun payload is "+JSON.stringify(payload));
 	try{
-	   console.log("LoginFun");
        const response=yield call(loginForAccount,payload);
-       yield put({type:'LOGIN_SUCCESS',info:response})
+       console.log("response is "+JSON.stringify(response));
+       yield put({type:'LOGIN_SUCCESS',payload:response})
 	}catch(e){
-       yield put({type:'LOGIN_ERROR',info:e});
-	}
-}
-export function* watchSaga(){
-	console.log("watchSaga");
-	let task;
-	while(true){
-		yield take('LOGIN');
-		if(task)yield cancel(task);
-		task=yield fork(LoginFun);
+       yield put({type:'LOGIN_ERROR',errMessage:e});
 	}
 }
 
-// export default function* root(){
-// 	console.log("sdfsfd");
-// 	//yield all([fork(watchLogin)]);
-// }
+export function* watchSaga(){
+	let task;
+	while(true){
+		const payload=yield take('LOGIN');
+		console.log("watchSaga is "+JSON.stringify(payload));
+		if(task)yield cancel(task);
+		task=yield fork(LoginFun,payload.payload);
+	}
+}

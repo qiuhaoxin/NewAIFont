@@ -2,7 +2,7 @@
 import request from './request';
 
 const urlParams={
-	development:'http://172.20.72.40:8888',
+	development:'http://172.20.70.42:8888',
 	production:'ai.kingdee.com:9992',
 }
 let postUrl="";
@@ -21,7 +21,7 @@ export function getCurrentUser(params){
 };
 //用户登录
 export function loginForAccount(params){
-    return request(postUrl+"/login/Login",{
+    return request(postUrl+"/newlogin/Login",{
     	method:"POST",
     	body:params,
     })

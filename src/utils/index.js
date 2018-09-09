@@ -1,4 +1,6 @@
 
+let MD5=require('md5.js');
+
 import isPlainObject from 'is-plain-object';
 export const isArray=Array.isArray.bind(Array);
 export const isFunction=fn=>typeof fn==='function';
@@ -38,3 +40,10 @@ export const isEmpty=(str)=>{
     // console.log("arr is "+JSON.stringify(arr));
      return arr;
  }
+
+ export function encrypt(msg){
+// body...
+  var md5stream=new MD5();
+  const afterMd5=md5stream.update(msg).digest('hex');
+  return afterMd5;
+ }  

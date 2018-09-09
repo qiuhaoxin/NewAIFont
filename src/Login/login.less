@@ -36,18 +36,37 @@
 		   height:100%;
 		   background:url('../images/login15.png');
 		   background-repeat:no-repeat;
-		   background-size:contain;
+		   background-size:100% 100%;
 	   }
     }
     & .inputWrapper{
-        margin-top:18%;flex-grow:1;
-        & .row{
+        flex-grow:1;margin:12% auto;padding:10px 30px;position:relative;
+        & .row,& .noneLineRow{
             display:inline-flex;
-            width:100%;
+            width:98%;
             margin-top:40px;
             position:relative;
+            & .leftRow,& .rightRow{
+               width:50%;display:inline-flex;
+            }
+            & .leftRow{
+               & .remember{
+                  display:block;position:relative;
+                  &:before{
+
+                  }
+               }
+               & .findPsw{
+                  margin-left:8px;
+               }
+            }
+            & .rightRow{
+              justify-content:flex-end;
+            }
+        }
+        & .row{
             &:after{
-               content:'';position:absolute;left:0;width:100%;height:1px;background:#ccc;bottom:0;
+               content:'';position:absolute;left:0;width:100%;height:1px;background:#ccc;bottom:-12px;transform:scaleY(.5);
             }
             & label{
                 width:50px;
@@ -57,6 +76,11 @@
                outline:none;
             }
         }
+        & .scanRow{
+          position:absolute;
+          bottom:40px;
+        }
+
     }
 
 }

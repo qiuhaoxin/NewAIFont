@@ -10,7 +10,6 @@ import createSagaMiddleware from 'redux-saga';
 import './index.less';
 
 const initState={};
-console.log("watchSaga is "+watchSaga);
 // const enhancer = compose(
 //   applyMiddleware(createSagaMiddleware(saga)),
 //   window.devToolsExtension ? window.devToolsExtension() : f => f
